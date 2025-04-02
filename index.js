@@ -11,10 +11,6 @@ app.use(cors({ // API-Sharing freigeben für Port 5050
     allowedHeaders: ["Content-Type"],
 }));
 
-function readFile() {
-    const data = fs.readFileSync("music.json", "utf-8");
-    return JSON.parse(data);
-}
 
 // Hilfsfunktion
 function readFile() {
@@ -27,16 +23,15 @@ function writeFile(data) {
 }
 
 // GET
-app.get("/get", (req, res) => {
-
+app.get("/songsglobal", (req, res) => {
+    readFile()
+    res.json(songsglobal);
 })
 
 // POST
 app.post("/post", (req, res) => {
 
 })
-
-// PUT
 
 // DELETE
 

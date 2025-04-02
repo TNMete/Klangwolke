@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
         displayPlaylist(userPlaylist, playlistUserTable);
 
 
-        const globalPlaylist = await fetchPlaylistData('URL_DEINER_GLOBAL_PLAYLIST_API', playlistGlobalTable);
+        const globalPlaylist = await fetchPlaylistData('http:localhost:5500/songsglobal', playlistGlobalTable);
         displayPlaylist(globalPlaylist, playlistGlobalTable);
     }
 
