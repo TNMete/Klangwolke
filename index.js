@@ -6,9 +6,9 @@ const app = express();
 app.use(express.json()); // Zum Lesen von Body-Requests
 
 app.use(cors({ // API-Sharing freigeben für Port 5050
-    origin: "http://127.0.0.1:5500",
+    origin: ["http://127.0.0.1:5500", "http:localhost:5500"],
     methods: ["GET", "POST", "DELETE"],
-    allowedHeaders: ["Content-Type"], 
+    allowedHeaders: ["Content-Type"],
 }));
 
 function readFile() {
@@ -16,7 +16,7 @@ function readFile() {
     return JSON.parse(data);
 }
 
-// Hilfsfunktio
+// Hilfsfunktion
 function readFile() {
     const data = fs.readFileSync("music.json", "utf-8");
     return JSON.parse(data);
@@ -73,7 +73,7 @@ app.post("/register", (req, res) => {
 
         fs.writeFileSync("users.json", JSON.stringify(data, null, 2));
 
-        console.log("Aktueller Inhalt von users.json:", fs.readFileSync("users.json", "utf8")); 
+        console.log("Aktueller Inhalt von users.json:", fs.readFileSync("users.json", "utf8"));
 
         res.status(201).json({ message: "Benutzer registriert" });
         console.log("Benutzer registriert:", username);
