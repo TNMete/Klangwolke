@@ -1,24 +1,56 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const playlist = [
-        { title: 'No Rival', artist: 'Alaina Cross', genre: 'Pop', time: '3:18', src: '../songs/Alaina Cross, Maestro Chives, Egzod - No Rival [NCS Release].mp3' },
-        { title: 'Move Like This', artist: 'Bad Computer', genre: 'Pop', time: '3:35', src: '../songs/Bad Computer - Move Like This [NCS Release].mp3' },
-    ];
-
-    const tableBody = document.querySelector('#playlistTable tbody');
+    const playlistUserTable = document.querySelector('#playlistUserTable tbody');
+    const playlistGlobalTable = document.querySelector('#playlistGlobalTable tbody');
     const audioPlayer = document.querySelector('#audioPlayer');
 
-    playlist.forEach(song => {
-        const row = document.createElement('tr');
-        row.innerHTML = `
-            <td>${song.title}</td>
-            <td>${song.artist}</td>
-            <td>${song.genre}</td>
-            <td>${song.time}</td>
-        `;
-        row.addEventListener('click', () => {
-            audioPlayer.src = song.src;
-            audioPlayer.play();
+
+    // Funktion zum Abrufen der Playlist-Daten von der API
+    async function fetchPlaylistData(url, table) {
+        try {
+            const response = await fetch(url);
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const data = await response.json();
+            return data;
+        } catch (error) {
+            console.error('Fehler beim Abrufen der Daten:', error);
+            alert('Fehler beim Abrufen der Playlist-Daten.');
+            return [];
+        }
+    }
+
+
+    // Funktion zum Anzeigen der Playlist in der Tabelle
+    function displayPlaylist(playlist, table) {
+        table.innerHTML = ''; // Tabelle leeren, bevor neue Daten angezeigt werden
+        playlist.forEach(song => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${song.title}</td>
+                <td>${song.artist}</td>
+                <td>${song.genre}</td>
+                <td>${song.time}</td>
+            `;
+            row.addEventListener('click', () => {
+                audioPlayer.src = song.src;
+                audioPlayer.play();
+            });
+            table.appendChild(row);
         });
-        tableBody.appendChild(row);
-    });
+    }
+
+
+    // Daten von den APIs abrufen und anzeigen
+    async function initializePlaylists() {
+        const userPlaylist = await fetchPlaylistData('URL_DEINER_USER_PLAYLIST_API', playlistUserTable);
+        displayPlaylist(userPlaylist, playlistUserTable);
+
+
+        const globalPlaylist = await fetchPlaylistData('URL_DEINER_GLOBAL_PLAYLIST_API', playlistGlobalTable);
+        displayPlaylist(globalPlaylist, playlistGlobalTable);
+    }
+
+
+    initializePlaylists();
 });

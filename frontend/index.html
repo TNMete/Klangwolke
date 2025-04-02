@@ -1,58 +1,63 @@
 <!DOCTYPE html>
-<html lang="de">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>soundboard</title>
-    <script src="script.js" defer></script>
-</head>
-<body>
-    <header>
-        <div class="logo">
-            <img src="logo_hell.png" alt="Logo">
-        </div>
-        <nav>
-            <button id="login">Login</button>
-            <button id="register">Sign Up</button>
-        </nav>
-    </header>
+ <html lang="de">
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="stylesheet" href="style.css">
+     <title>soundboard</title>
+     </head>
+ <body>
+     <header>
+         <div class="logo">
+             <img src="logo_hell.png" alt="Logo">
+         </div>
+         <nav>
+             <button id="login">Login</button>
+             <button id="register">Sign Up</button>
+         </nav>
+     </header>
+ 
 
-    <main>
-        <aside>
-            <h2>Meine Playlist</h2>
-            <table id="playlistTable">
-                <thead>
-                    <tr>
-                        <th>Titel</th>
-                        <th>Künstler</th>
-                        <th>Genre</th>
-                        <th>Time</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    </tbody>
-            </table>
-        </aside>
-    </main>
+     <main>
+         <aside id="userPlaylist">
+             <h2>Meine Playlist</h2>
+             <table id="playlistUserTable">
+                 <thead>
+                     <tr>
+                         <th>Titel</th>
+                         <th>Künstler</th>
+                         <th>Genre</th>
+                         <th>Zeit</th>
+                     </tr>
+                 </thead>
+                 <tbody>
+                     </tbody>
+             </table>
+         </aside>
+         <aside id="globalPlaylist">
+             <h2>Globale Playlist</h2>
+             <table id="playlistGlobalTable">
+                 <thead>
+                     <tr>
+                         <th>Titel</th>
+                         <th>Künstler</th>
+                         <th>Genre</th>
+                         <th>Zeit</th>
+                     </tr>
+                 </thead>
+                 <tbody>
+                     </tbody>
+             </table>
+         </aside>
+     </main>
+ 
 
-    <footer>
-        <audio id="audioPlayer" controls>
-            <source src="" type="audio/mpeg">
-            Your browser does not support the audio element.
-        </audio>
-    </footer>
+     <footer>
+         <audio id="audioPlayer" controls>
+             <source src="" type="audio/mpeg">
+             Your browser does not support the audio element.
+         </audio>
+     </footer>
+ 
 
-    <script src="script02.js"></script>
-    <h1>Klangwolke</h1>
-    <div id="playlist"></div>
-    <button id="register">Regestiren</button>
-    <button id="login">Login</button>
-    <button class="delet">Löschen</button>
-    <p id="username">Benutzername</p>
-
-    <div id="form-container"></div>
-
-    <script src="userData.js"></script>
-</body>
-</html>
+     <script src="script02.js" defer></script>

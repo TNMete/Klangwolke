@@ -10,11 +10,13 @@ body {
     background-attachment: fixed;
 }
 
+
 header, footer {
     background-color: white;
     padding: 10px 20px;
     text-align: center;
 }
+
 
 header {
     display: flex;
@@ -22,13 +24,16 @@ header {
     align-items: center;
 }
 
+
 .logo img {
     height: 50px;
 }
 
+
 nav button {
     margin-left: 10px;
 }
+
 
 main {
     display: flex;
@@ -37,23 +42,33 @@ main {
     padding: 20px;
 }
 
+
 aside {
-    width: 300px;
+    width: 45%; /* Breite angepasst, um zwei Listen nebeneinander darzustellen */
     padding: 20px;
     background-color: rgba(223, 206, 206, 0.5);
     border-radius: 10px;
+    margin-right: 20px; /* Abstand zwischen den Listen */
 }
+
+
+aside:last-child {
+    margin-right: 0; /* Kein Abstand nach der letzten Liste */
+}
+
 
 table {
     width: 100%;
     border-collapse: collapse;
 }
 
+
 th, td {
     border: 0px solid #ddd;
     padding: 8px;
     text-align: left;
 }
+
 
 a, button:hover, table tr:hover {
     color: red;
