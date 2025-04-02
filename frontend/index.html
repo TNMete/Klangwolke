@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meine Musik-Website</title>
     <link rel="stylesheet" href="style.css">
+    <title>soundboard</title>
+    <script src="script.js" defer></script>
 </head>
 <body>
     <header>
@@ -12,8 +13,8 @@
             <img src="logo_hell.png" alt="Logo">
         </div>
         <nav>
-            <button id="loginButton">Login</button>
-            <button id="signupButton">Sign Up</button>
+            <button id="login">Login</button>
+            <button id="register">Sign Up</button>
         </nav>
     </header>
 
@@ -43,5 +44,15 @@
     </footer>
 
     <script src="script02.js"></script>
+    <h1>Klangwolke</h1>
+    <div id="playlist"></div>
+    <button id="register">Regestiren</button>
+    <button id="login">Login</button>
+    <button class="delet">Löschen</button>
+    <p id="username">Benutzername</p>
+
+    <div id="form-container"></div>
+
+    <script src="userData.js"></script>
 </body>
 </html>
