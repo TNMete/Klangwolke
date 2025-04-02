@@ -1,6 +1,23 @@
 [
-  {
-    "username": "Asimo",
-    "password": "Start123#"
-  }
+    {
+        "id": "1",
+        "artist": "Alaina Cross, Maestro Chives, Egzod",
+        "title": "No Rival",
+        "link": "xyz",
+        "duration": "3:18"
+    },
+    {
+        "id": "2",
+        "artist": "Barren Gates",
+        "title": "Devil",
+        "link": "xyz",
+        "duration": "2:56"
+    },
+    {
+        "id": "3",
+        "artist": "DEAF KEV",
+        "title": "Invincible",
+        "link": "xyz",
+        "duration": "4:33"
+    }
 ]
