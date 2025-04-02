@@ -21,7 +21,7 @@ songList.forEach((song, index) => {
 
 function playSong(song) {
     stopSong();
-    currentAudio = new Audio(`songs/${song}`);
+    currentAudio = new Audio(`../songs/${song}`);
     currentAudio.play();
 }
 
