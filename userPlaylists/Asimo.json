@@ -1,1 +1,10 @@
-[]
+[
+    {
+        "songID": 1,
+        "title": "No Rival",
+        "artist": "Egzod & Maestro Chives & Alaina Cross",
+        "src": "../songs/Alaina Cross, Maestro Chives, Egzod - No Rival [NCS Release].mp3",
+        "time": "03:18",
+        "genre": "Pop"
+    }
+]
