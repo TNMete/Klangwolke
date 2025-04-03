@@ -1,78 +1,72 @@
 body {
     font-family: sans-serif;
     margin: 0;
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-rows: 80px 1fr 80px;
     min-height: 100vh;
     background-image: url('bg_hell.png');
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
+    grid-template-areas:
+        "header"
+        "main"
+        "footer";
 }
 
-
-header, footer {
+#header {
     background-color: white;
     padding: 10px 20px;
     text-align: center;
-}
-
-
-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: fixed;
-    width: 100vw;
+    grid-area: header;
 }
 
-
-footer {
-    width: 100vw;
-    bottom: 0px;
-    position: bottom;
-    position: fixed;
+#footer {
+    background-color: white;
+    padding: 10px 20px;
+    text-align: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+    grid-area: footer;
 }
 
 .logo img {
     height: 50px;
 }
 
-
 nav button {
     margin-left: 10px;
 }
 
-
-main {
+#main {
     display: flex;
-    flex: 1;
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(255, 255, 255, 0.7);
     padding: 20px;
-    
+    grid-area: main;
 }
 
-
 aside {
-    width: 50%; /* Breite angepasst, um zwei Listen nebeneinander darzustellen */
+    width: 50%;
     padding: 20px;
     background-color: rgba(223, 206, 206, 0.5);
     border-radius: 10px;
-    margin-right: 20px; /* Abstand zwischen den Listen */
-    overflow-y: auto; /* Vertikales Scrollen aktivieren */
+    margin-right: 20px;
+    height: 550px;
+    overflow-y: auto;
 }
-
 
 aside:last-child {
-    margin-right: 0; /* Kein Abstand nach der letzten Liste */
+    margin-right: 0;
 }
-
 
 table {
     width: 100%;
     border-collapse: collapse;
 }
-
 
 th, td {
     border: 0px solid #ddd;
@@ -80,7 +74,34 @@ th, td {
     text-align: left;
 }
 
-
 a, button:hover, table tr:hover {
     color: red;
+}
+
+/* Footer-Spalten-Styling */
+#footer .track-info {
+    text-align: left;
+}
+
+#footer #audioPlayer {
+    width: 100%;
+}
+
+#footer #addToPlaylist {
+    text-align: right;
+}
+
+/* Button-Styling für globale Tabelle */
+.add-to-playlist-button {
+    background-color: rgba(223, 206, 206, 0.5);
+    border: 1px solid #444040;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.add-to-playlist-button:hover {
+    color: red;
+    border-color: red;
+    background-color: rgba(138, 129, 129, 0.5);
 }

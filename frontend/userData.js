@@ -106,7 +106,7 @@ document.getElementById("delete").addEventListener("click", async () => {
 
     const confirmDelete = confirm(`Bist du sicher, dass du den Benutzer "${username}" löschen möchtest?`);
     if (!confirmDelete) {
-        return; 
+        return;
     }
 
     const response = await fetch("http://localhost:5050/delete", {
