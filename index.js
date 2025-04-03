@@ -6,12 +6,26 @@ const path = require("path");
 const app = express();
 app.use(express.json()); // Zum Lesen von Body-Requests
 
-app.use(cors({ // API-Sharing freigeben für Port 5050
+app.use(cors({ // API-Sharing freigeben für Port 5050 & 5500
     origin: ["http://127.0.0.1:5500", "http:localhost:5500", "http://127.0.0.1:5050", "http:localhost:5050"],
     methods: ["GET", "POST", "DELETE"],
     allowedHeaders: ["Content-Type"],
 }));
 
+function getUserPlaylist(username) {
+    const filePath = path.join(__dirname, "../userPlaylists", `${username}.json`);
+
+    if (!fs.existsSync(filePath)) {
+        fs.writeFileSync(filePath, JSON.stringify([]));
+
+        return JSON.parse(fs.readFileSync(filePath, "utf8"));
+    }
+}
+
+function saveUserPlaylist(username, playlist) {
+    const filePath = path.join(__dirname, "../userPlaylists", `${username}.json`);
+    fs.writeFileSync(filePath, JSON.stringify(playlist, null, 2));
+}
 
 // Hilfsfunktion
 function readFile() {
@@ -23,6 +37,32 @@ function writeFile(data) {
     fs.writeFileSync("music.json", JSON.stringify(data, null, 2));
 }
 
+app.get("/playlist/:username", (req, res) => {
+    const { username } = req.params;
+    const playlist = getUserPlaylist(username);
+    res.json(playlist);
+});
+
+// Song hinzufügen
+app.post("/playlist/:username", (req, res) => {
+    const { username } = req.params;
+    const song = req.body;
+
+    let playlist = getUserPlaylist(username);
+    playlist.push(song);
+
+    saveUserPlaylist(username, playlist);
+    res.json({ message: "Song hinzugefügt", playlist });
+});
+// Song entfernen
+app.delete("/playlist/:username/:index", (req, res) => {
+    const { username, index } = req.params;
+    let playlist = getUserPlaylist(username);
+    playlist.splice(index, 1);
+    saveUserPlaylist(username, playlist);
+
+    res.json({ message: "Song entfernt", playlist });
+});
 
 app.get("/songsglobal", (req, res) => {
     try {
@@ -104,7 +144,7 @@ app.post("/register", (req, res) => {
 
         console.log("Aktueller Inhalt von users.json:", fs.readFileSync(usersFile, "utf8"));
 
-        const playlistDir = path.join(__dirname, "userPlaylists");
+        const playlistDir = path.join(__dirname, "../userPlaylists");
         if (!fs.existsSync(playlistDir)) {
             fs.mkdirSync(playlistDir, { recursive: true });
         }
@@ -127,7 +167,7 @@ app.delete("/delete", (req, res) => {
         const { username } = req.body;
 
         const usersFile = path.join(__dirname, "users.json");
-        const playlistFile = path.join(__dirname, "/userPlaylists", `${username}.json`);
+        const playlistFile = path.join(__dirname, "../userPlaylists", `${username}.json`);
 
         if (!fs.existsSync(usersFile)) {
             return res.status(500).json({ message: "Benutzerdatenbank nicht gefunden" });
