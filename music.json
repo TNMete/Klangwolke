@@ -1,162 +1,183 @@
 [
     {
-    "songID": 1,
-    "title": "Alaina Cross, Maestro Chives, Egzod - No Rival [NCS Release]",
-    "artist": "Egzod & Maestro Chives & Alaina Cross",
-    "src": "../songs/Alaina Cross, Maestro Chives, Egzod - No Rival [NCS Release].mp3",
-    "time": "00:03:18",
-    "genre": "Pop"
+        "songID": 1,
+        "title": "No Rival",
+        "artist": "Egzod & Maestro Chives & Alaina Cross",
+        "src": "../songs/Alaina Cross, Maestro Chives, Egzod - No Rival [NCS Release].mp3",
+        "time": "00:03:18",
+        "genre": "Pop"
     },
     {
-    "songID": 2,
-    "title": "Bad Computer - Move Like This [NCS Release]",
-    "artist": "Bad Computer",
-    "src": "../songs/Bad Computer - Move Like This [NCS Release].mp3",
-    "time": "00:03:35",
-    "genre": "Pop"
+        "songID": 2,
+        "title": "Move Like This",
+        "artist": "Bad Computer",
+        "src": "../songs/Bad Computer - Move Like This [NCS Release].mp3",
+        "time": "00:03:35",
+        "genre": "Pop"
     },
     {
-    "songID": 3,
-    "title": "Barren Gates - Devil [NCS Release]",
-    "artist": "Barren Gates",
-    "src": "../songs/Barren Gates - Devil [NCS Release].mp3",
-    "time": "00:02:56",
-    "genre": "Pop"
+        "songID": 3,
+        "title": "Devil",
+        "artist": "Barren Gates",
+        "src": "../songs/Barren Gates - Devil [NCS Release].mp3",
+        "time": "00:02:56",
+        "genre": "Pop"
     },
     {
-    "songID": 4,
-    "title": "BEAUZ, JVNA - Crazy [NCS Release]",
-    "artist": "BEAUZ, JVNA",
-    "src": "../songs/BEAUZ, JVNA - Crazy [NCS Release].mp3",
-    "time": "00:03:27",
-    "genre": "Pop"
+        "songID": 4,
+        "title": "Crazy",
+        "artist": "BEAUZ, JVNA",
+        "src": "../songs/BEAUZ, JVNA - Crazy [NCS Release].mp3",
+        "time": "00:03:27",
+        "genre": "Pop"
     },
     {
-    "songID": 5,
-    "title": "Cartoon, Coleman Trapp, Jéja - Why We Lose (feat. Coleman Trapp) [NCS Release]",
-    "artist": "Cartoon - Why We Lose (f...",
-    "src": "../songs/Cartoon, Coleman Trapp, Jéja - Why We Lose (feat. Coleman Trapp) [NCS Release].mp3",
-    "time": "00:03:33",
-    "genre": "Pop"
+        "songID": 5,
+        "title": "Why We Lose (feat. Coleman Trapp)",
+        "artist": "Cartoon - Why We Lose (f...",
+        "src": "../songs/Cartoon, Coleman Trapp, Jéja - Why We Lose (feat. Coleman Trapp) [NCS Release].mp3",
+        "time": "00:03:33",
+        "genre": "Pop"
     },
     {
-    "songID": 6,
-    "title": "DEAF KEV - Invincible [NCS Release]",
-    "artist": "DEAF KEV - Invincible (NC...",
-    "src": "../songs/DEAF KEV - Invincible [NCS Release].mp3",
-    "time": "00:04:33",
-    "genre": "Pop"
+        "songID": 6,
+        "title": "Invincible",
+        "artist": "DEAF KEV - Invincible (NC...",
+        "src": "../songs/DEAF KEV - Invincible [NCS Release].mp3",
+        "time": "00:04:33",
+        "genre": "Pop"
     },
     {
-    "songID": 7,
-    "title": "Egzod, Neoni, Maestro Chives, Warriyo - Mortals x Royalty Mashup [NCS Release]",
-    "artist": "Egzod, Neoni, Maestro Chives, Warriyo",
-    "src": "../songs/Egzod, Neoni, Maestro Chives, Warriyo - Mortals x Royalty Mashup [NCS Release].mp3",
-    "time": "00:03:44",
-    "genre": "Pop"
+        "songID": 7,
+        "title": "Mortals x Royalty Mashup",
+        "artist": "Egzod, Neoni, Maestro Chives, Warriyo",
+        "src": "../songs/Egzod, Neoni, Maestro Chives, Warriyo - Mortals x Royalty Mashup [NCS Release].mp3",
+        "time": "00:03:44",
+        "genre": "Pop"
     },
     {
-    "songID": 8,
-    "title": "Electro-Light - Symbolism [NCS Release]",
-    "artist": "Electro-Light - Symbolism...",
-    "src": "../songs/Electro-Light - Symbolism [NCS Release].mp3",
-    "time": "00:04:51",
-    "genre": "Pop"
+        "songID": 8,
+        "title": "Symbolism",
+        "artist": "Electro-Light - Symbolism...",
+        "src": "../songs/Electro-Light - Symbolism [NCS Release].mp3",
+        "time": "00:04:51",
+        "genre": "Pop"
     },
     {
-    "songID": 9,
-    "title": "Halvorsen, Netrum - Phoenix [NCS Release]",
-    "artist": "Halvorsen, Netrum",
-    "src": "../songs/Halvorsen, Netrum - Phoenix [NCS Release].mp3",
-    "time": "00:03:50",
-    "genre": "Pop"
+        "songID": 9,
+        "title": "Phoenix",
+        "artist": "Halvorsen, Netrum",
+        "src": "../songs/Halvorsen, Netrum - Phoenix [NCS Release].mp3",
+        "time": "00:03:50",
+        "genre": "Pop"
     },
     {
-    "songID": 10,
-    "title": "Janji, Johnning - Heroes Tonight (feat. Johnning) [NCS Release]",
-    "artist": "Janji - Heroes Tonight (fea...",
-    "src": "../songs/Janji, Johnning - Heroes Tonight (feat. Johnning) [NCS Release].mp3",
-    "time": "00:03:29",
-    "genre": "Pop"
+        "songID": 10,
+        "title": "Heroes Tonight (feat. Johnning)",
+        "artist": "Janji - Heroes Tonight (fea...",
+        "src": "../songs/Janji, Johnning - Heroes Tonight (feat. Johnning) [NCS Release].mp3",
+        "time": "00:03:29",
+        "genre": "Pop"
     },
     {
-    "songID": 11,
-    "title": "Lensko - Let's Go! [NCS Release]",
-    "artist": "Lensko - Let's Go! [NCS Re...",
-    "src": "../songs/Lensko - Let's Go! [NCS Release].mp3",
-    "time": "00:03:27",
-    "genre": "Pop"
+        "songID": 11,
+        "title": "Let's Go!",
+        "artist": "Lensko - Let's Go! [NCS Re...",
+        "src": "../songs/Lensko - Let's Go! [NCS Release].mp3",
+        "time": "00:03:27",
+        "genre": "Pop"
     },
     {
-    "songID": 12,
-    "title": "Lost Sky, Jex - Where We Started (feat. Jex) [NCS Release]",
-    "artist": "Lost Sky, Jex",
-    "src": "../songs/Lost Sky, Jex - Where We Started (feat. Jex) [NCS Release].mp3",
-    "time": "00:03:42",
-    "genre": "Pop"
+        "songID": 12,
+        "title": "Where We Started (feat. Jex)",
+        "artist": "Lost Sky, Jex",
+        "src": "../songs/Lost Sky, Jex - Where We Started (feat. Jex) [NCS Release].mp3",
+        "time": "00:03:42",
+        "genre": "Pop"
     },
     {
-    "songID": 13,
-    "title": "Maestro Chives, Egzod, Neoni - Royalty [NCS Release]",
-    "artist": "Egzod & Maestro Chives",
-    "src": "../songs/Maestro Chives, Egzod, Neoni - Royalty [NCS Release].mp3",
-    "time": "00:03:43",
-    "genre": "Pop"
+        "songID": 13,
+        "title": "Royalty",
+        "artist": "Egzod & Maestro Chives",
+        "src": "../songs/Maestro Chives, Egzod, Neoni - Royalty [NCS Release].mp3",
+        "time": "00:03:43",
+        "genre": "Pop"
     },
     {
-    "songID": 14,
-    "title": "Robin Hustin, Tobimorrow - Light It Up [NCS Release]",
-    "artist": "Robin Hustin, Tobimorrow",
-    "src": "../songs/Robin Hustin, Tobimorrow - Light It Up [NCS Release].mp3",
-    "time": "00:03:05",
-    "genre": "Pop"
+        "songID": 14,
+        "title": "Light It Up",
+        "artist": "Robin Hustin, Tobimorrow",
+        "src": "../songs/Robin Hustin, Tobimorrow - Light It Up [NCS Release].mp3",
+        "time": "00:03:05",
+        "genre": "Pop"
     },
     {
-    "songID": 15,
-    "title": "Scythermane, SH3RWIN, NXGHTI - DANÇA DO VERÃO [NCS Release]",
-    "artist": "Scythermane, SH3RWIN, NXGHTI",
-    "src": "../songs/Scythermane, SH3RWIN, NXGHTI - DANÇA DO VERÃO [NCS Release].mp3",
-    "time": "00:01:13",
-    "genre": "Pop"
+        "songID": 15,
+        "title": "DANÇA DO VERÃO",
+        "artist": "Scythermane, SH3RWIN, NXGHTI",
+        "src": "../songs/Scythermane, SH3RWIN, NXGHTI - DANÇA DO VERÃO [NCS Release].mp3",
+        "time": "00:01:13",
+        "genre": "Pop"
     },
     {
-    "songID": 16,
-    "title": "She Is Jules, Lost Sky - Vision pt. II [NCS Release]",
-    "artist": "She Is Jules, Lost Sky",
-    "src": "../songs/She Is Jules, Lost Sky - Vision pt. II [NCS Release].mp3",
-    "time": "00:03:28",
-    "genre": "Pop"
+        "songID": 16,
+        "title": "SVision pt. II",
+        "artist": "She Is Jules, Lost Sky",
+        "src": "../songs/She Is Jules, Lost Sky - Vision pt. II [NCS Release].mp3",
+        "time": "00:03:28",
+        "genre": "Pop"
     },
     {
-    "songID": 17,
-    "title": "Syn Cole - Feel Good [NCS Release]",
-    "artist": "Syn Cole",
-    "src": "../songs/Syn Cole - Feel Good [NCS Release].mp3",
-    "time": "00:03:01",
-    "genre": "Pop"
+        "songID": 17,
+        "title": "Feel Good",
+        "artist": "Syn Cole",
+        "src": "../songs/Syn Cole - Feel Good [NCS Release].mp3",
+        "time": "00:03:01",
+        "genre": "Pop"
     },
     {
-    "songID": 18,
-    "title": "Unknown Brain, Heather Sommer - Perfect 10 (feat. Heather Sommer) [NCS Release]",
-    "artist": "Unknown Brain - Perfect 1...",
-    "src": "../songs/Unknown Brain, Heather Sommer - Perfect 10 (feat. Heather Sommer) [NCS Release].mp3",
-    "time": "00:03:24",
-    "genre": "Pop"
+        "songID": 18,
+        "title": "Perfect 10 (feat. Heather Sommer)",
+        "artist": "Unknown Brain - Perfect 1...",
+        "src": "../songs/Unknown Brain, Heather Sommer - Perfect 10 (feat. Heather Sommer) [NCS Release].mp3",
+        "time": "00:03:24",
+        "genre": "Pop"
     },
     {
-    "songID": 19,
-    "title": "waera - harinezumi [NCS Release]",
-    "artist": "waera",
-    "src": "../songs/waera - harinezumi [NCS Release].mp3",
-    "time": "00:01:57",
-    "genre": "Pop"
+        "songID": 19,
+        "title": "harinezumi",
+        "artist": "waera",
+        "src": "../songs/waera - harinezumi [NCS Release].mp3",
+        "time": "00:01:57",
+        "genre": "Pop"
     },
     {
-    "songID": 20,
-    "title": "Warriyo - Dunes [NCS Release]",
-    "artist": "Warriyo",
-    "src": "../songs/Warriyo - Dunes [NCS Release].mp3",
-    "time": "00:03:22",
-    "genre": "Pop"
+        "songID": 20,
+        "title": "Dunes",
+        "artist": "Warriyo",
+        "src": "../songs/Warriyo - Dunes [NCS Release].mp3",
+        "time": "00:03:22",
+        "genre": "Pop"
+    },
+    {
+        "songID": 21,
+        "title": "harinezumi",
+        "artist": "waera",
+        "src": "../songs/waera - harinezumi [NCS Release].mp3",
+        "time": "00:01:57",
+        "genre": "Pop"
+    },
+    {
+        "songID": 22,
+        "title": "Dunes",
+        "artist": "Warriyo",
+        "src": "../songs/Warriyo - Dunes [NCS Release].mp3",
+        "time": "00:03:22",
+        "genre": "Pop"
     }
-   ]
+]
+
+
+
+
+
