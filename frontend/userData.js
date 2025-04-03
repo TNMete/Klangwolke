@@ -1,5 +1,9 @@
 function showForm(action) {
     const container = document.getElementById("form-container");
+    
+    document.getElementById("login").style.display = "none";
+    document.getElementById("register").style.display = "none";
+
     container.innerHTML = `
         <input type="text" id="input-username" placeholder="Benutzername">
         <input type="password" id="input-password" placeholder="Passwort">
@@ -73,43 +77,9 @@ document.getElementById("delete").addEventListener("click", async () => {
     }
 });
 
-document.getElementById("login").addEventListener("click", () => showForm("login"));
-
-async function showForm(action) {
-    const container = document.getElementById("form-container");
-    container.innerHTML = `
-        <input type="text" id="input-username" placeholder="Benutzername">
-        <input type="password" id="input-password" placeholder="Passwort">
-        <button id="confirm">Bestätigen</button>
-    `;
-
-    document.getElementById("confirm").addEventListener("click", async () => {
-        const username = document.getElementById("input-username").value;
-        const password = document.getElementById("input-password").value;
-
-        if (!username || !password) {
-            alert("Bitte fülle alle Felder aus!");
-            return;
-        }
-
-        let url = action === "register" ? "http://localhost:5050/register" : "http://localhost:5050/login";
-        const response = await fetch(url, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ username, password })
-        });
-
-        const data = await response.json();
-        if (response.status === 200 && action === "login") {
-            document.getElementById("username").textContent = username;
-            updateUserPlaylist(username);
-        }
-
-        container.innerHTML = "";
-    });
-}
 function updateUI(isLoggedIn) {
     document.getElementById("register").style.display = isLoggedIn ? "none" : "block";
     document.getElementById("login").style.display = isLoggedIn ? "none" : "block";
     document.getElementById("delete").style.display = isLoggedIn ? "block" : "none";
+    document.getElementById("username").style.display = isLoggedIn ? "block" : "none";
 }
