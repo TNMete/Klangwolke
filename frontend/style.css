@@ -50,15 +50,17 @@ main {
     flex: 1;
     background-color: rgba(255, 255, 255, 0.8);
     padding: 20px;
+    
 }
 
 
 aside {
-    width: 45%; /* Breite angepasst, um zwei Listen nebeneinander darzustellen */
+    width: 50%; /* Breite angepasst, um zwei Listen nebeneinander darzustellen */
     padding: 20px;
     background-color: rgba(223, 206, 206, 0.5);
     border-radius: 10px;
     margin-right: 20px; /* Abstand zwischen den Listen */
+    overflow-y: auto; /* Vertikales Scrollen aktivieren */
 }
 
 

@@ -1,63 +1,67 @@
 <!DOCTYPE html>
- <html lang="de">
- <head>
-     <meta charset="UTF-8">
-     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <link rel="stylesheet" href="style.css">
-     <title>klangwolke</title>
-     </head>
- <body>
-     <header>
-         <div class="logo">
-             <img src="logo_hell.png" alt="Logo">
-         </div>
-         <nav>
-             <button id="login">Login</button>
-             <button id="register">Sign Up</button>
-             <button id="delete" style="display: none;">Benutzer Löschen</button>
-             <p id="username" style="display: none;">Benutzername</p>
-             <div id="form-container"></div>
-         </nav>
-     </header>
-     <main>
-         <aside id="userPlaylist">
-             <h2>Meine Playlist</h2>
-             <table id="playlistUserTable">
-                 <thead>
-                     <tr>
-                         <th>Titel</th>
-                         <th>Künstler</th>
-                         <th>Genre</th>
-                         <th>Zeit</th>
-                     </tr>
-                 </thead>
-                 <tbody>
-                     </tbody>
-             </table>
-         </aside>
-         <aside id="globalPlaylist">
-             <h2>Globale Playlist</h2>
-             <table id="playlistGlobalTable">
-                 <thead>
-                     <tr>
-                         <th>Titel</th>
-                         <th>Künstler</th>
-                         <th>Genre</th>
-                         <th>Zeit</th>
-                     </tr>
-                 </thead>
-                 <tbody>
-                     </tbody>
-             </table>
-         </aside>
-     </main>
-     <footer>
-         <audio id="audioPlayer" controls>
-             <source src="" type="audio/mpeg">
-             Your browser does not support the audio element.
-         </audio>
-     </footer>
-     <script src="script02.js"></script>
-     <script src="userData.js"></script>
-    </body>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <title>Klangwolke</title>
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <img src="logo_hell.png" alt="Logo">
+        </div>
+        <nav>
+            <button id="login">Login</button>
+            <button id="register">Sign Up</button>
+            <button id="delete" style="display: none;">Benutzer Löschen</button>
+            <p id="username" style="display: none;">Benutzername</p>
+            <div id="form-container"></div>
+        </nav>
+    </header>
+    <main>
+        <aside id="userPlaylist">
+            <h2>Meine Playlist</h2>
+            <table id="playlistUserTable">
+                <thead>
+                    <tr>
+                        <th>Titel</th>
+                        <th>Künstler</th>
+                        <th>Genre</th>
+                        <th>Zeit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </aside>
+        <aside id="globalPlaylist">
+            <h2>Globale Playlist</h2>
+            <table id="playlistGlobalTable">
+                <thead>
+                    <tr>
+                        <th>Titel</th>
+                        <th>Künstler</th>
+                        <th>Genre</th>
+                        <th>Zeit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </aside>
+    </main>
+    <footer>
+        <audio id="audioPlayer" controls>
+            <source src="" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+    </footer>
+    <script src="script.js"></script>
+    <script src="userData.js"></script>
+</body>
+
 </html>
