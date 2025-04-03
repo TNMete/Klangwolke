@@ -2,9 +2,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const playlistUserTable = document.querySelector('#playlistUserTable tbody');
     const playlistGlobalTable = document.querySelector('#playlistGlobalTable tbody');
     const audioPlayer = document.querySelector('#audioPlayer');
+    const trackInfoDiv = document.querySelector('.track-info');
 
-
-    // Funktion zum Abrufen der Playlist-Daten von der API
     async function fetchPlaylistData(url, table) {
         try {
             const response = await fetch(url);
@@ -20,10 +19,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-
-    // Funktion zum Anzeigen der Playlist in der Tabelle
     function displayPlaylist(playlist, table) {
-        table.innerHTML = ''; // Tabelle leeren, bevor neue Daten angezeigt werden
+        table.innerHTML = '';
         playlist.forEach(song => {
             const row = document.createElement('tr');
             row.innerHTML = `
@@ -32,23 +29,37 @@ document.addEventListener('DOMContentLoaded', () => {
                 <td>${song.genre}</td>
                 <td>${song.time}</td>
             `;
+
+            if (table === playlistGlobalTable) {
+                const addButtonCell = document.createElement('td');
+                const addButton = document.createElement('button');
+                addButton.textContent = '+';
+                addButton.classList.add('add-to-playlist-button');
+                addButtonCell.appendChild(addButton);
+                row.appendChild(addButtonCell);
+            }
+
             row.addEventListener('click', () => {
                 audioPlayer.src = song.src;
                 audioPlayer.play();
+                updateTrackInfo(song); // Track-Info aktualisieren
             });
             table.appendChild(row);
         });
     }
 
+    // Track-Info-Funktion
+    function updateTrackInfo(song) {
+        trackInfoDiv.innerHTML = `
+            <td><strong>Titel:</strong> ${song.title}</td><br>
+            <td><strong>Künstler:</strong> ${song.artist}</td>
+        `;
+    }
 
-   // Initialisierung der Playlists
-   async function initializePlaylists() {
-    // const userPlaylist = await fetchData('URL_DEINER_USER_PLAYLIST_API');
-    // displayPlaylist(userPlaylist, playlistUserTable);
+    async function initializePlaylists() {
+        const globalPlaylist = await fetchPlaylistData('http://localhost:5050/songsglobal', playlistGlobalTable);
+        displayPlaylist(globalPlaylist, playlistGlobalTable);
+    }
 
-    const globalPlaylist = await fetchPlaylistData('http://localhost:5050/songsglobal');
-    displayPlaylist(globalPlaylist, playlistGlobalTable);
-}
-
-initializePlaylists();
+    initializePlaylists();
 });
