@@ -66,7 +66,6 @@ app.post("/register", (req, res) => {
 
         const usersFile = "users.json";
 
-        // Prüfen, ob users.json existiert, falls nicht, erstellen
         if (!fs.existsSync(usersFile)) {
             fs.writeFileSync(usersFile, JSON.stringify([]));
         }
@@ -109,7 +108,7 @@ app.delete("/delete", (req, res) => {
         const playlistFile = path.join(__dirname, "/userPlaylists", `${username}.json`);
 
         if (!fs.existsSync(usersFile)) {
-            return res.status(500).json({ message: "DEBUGG Benutzerdatenbank nicht gefunden" });
+            return res.status(500).json({ message: "Benutzerdatenbank nicht gefunden" });
         }
 
         let data = JSON.parse(fs.readFileSync(usersFile, "utf8"));

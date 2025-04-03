@@ -1,5 +1,9 @@
 function showForm(action) {
     const container = document.getElementById("form-container");
+    
+    document.getElementById("login").style.display = "none";
+    document.getElementById("register").style.display = "none";
+
     container.innerHTML = `
         <input type="text" id="input-username" placeholder="Benutzername">
         <input type="password" id="input-password" placeholder="Passwort">
@@ -73,9 +77,9 @@ document.getElementById("delete").addEventListener("click", async () => {
     }
 });
 
-
 function updateUI(isLoggedIn) {
     document.getElementById("register").style.display = isLoggedIn ? "none" : "block";
     document.getElementById("login").style.display = isLoggedIn ? "none" : "block";
     document.getElementById("delete").style.display = isLoggedIn ? "block" : "none";
+    document.getElementById("username").style.display = isLoggedIn ? "block" : "none";
 }
