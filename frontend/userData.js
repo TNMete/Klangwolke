@@ -1,3 +1,17 @@
+async function fetchUserPlaylist(username) {
+    try {
+        const response = await fetch(`http://localhost:5050/songsUser?username=${username}`);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error('Fehler beim Abrufen der Benutzer-Playlist:', error);
+        return [];
+    }
+}
+
 function showForm(action) {
     const container = document.getElementById("form-container");
     
@@ -39,10 +53,44 @@ function showForm(action) {
 
         if (response.status === 200 && action === "login") {
             document.getElementById("username").textContent = username;
-            updateUI(true);
+            updateUI(true, username); 
+            
+            container.innerHTML = "";
+
+
+            fetchUserPlaylist(username).then(userPlaylist => {
+                console.log(userPlaylist);
+                if (userPlaylist && userPlaylist.length > 0) {
+                    displayPlaylist(userPlaylist, document.querySelector('#playlistUserTable tbody'));
+                } else {
+                    console.log('[KAYT] Keine Playlist gefunden.');
+                }
+            });            
+
+        } else {
+            console.log('Login fehlgeschlagen oder andere Aktion erforderlich.');
+         
         }
 
-        container.innerHTML = "";
+        container.innerHTML = ""; 
+    });
+}
+
+function displayPlaylist(playlist, table) {
+    table.innerHTML = ''; // Tabelle leeren, bevor neue Daten angezeigt werden
+    playlist.forEach(song => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${song.title}</td>
+            <td>${song.artist}</td>
+            <td>${song.genre}</td>
+            <td>${song.time}</td>
+        `;
+        row.addEventListener('click', () => {
+            audioPlayer.src = song.src;
+            audioPlayer.play();
+        });
+        table.appendChild(row);
     });
 }
 
@@ -77,9 +125,15 @@ document.getElementById("delete").addEventListener("click", async () => {
     }
 });
 
-function updateUI(isLoggedIn) {
+function updateUI(isLoggedIn, username = null) {
+    console.log('[KAYT] UI wird aktualisiert. Eingeloggt:', isLoggedIn, 'Benutzer:', username);
+    
     document.getElementById("register").style.display = isLoggedIn ? "none" : "block";
     document.getElementById("login").style.display = isLoggedIn ? "none" : "block";
     document.getElementById("delete").style.display = isLoggedIn ? "block" : "none";
     document.getElementById("username").style.display = isLoggedIn ? "block" : "none";
+    
+    if (isLoggedIn) {
+        document.getElementById("username").textContent = username;
+    }
 }

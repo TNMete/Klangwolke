@@ -6,5 +6,13 @@
         "src": "../songs/Alaina Cross, Maestro Chives, Egzod - No Rival [NCS Release].mp3",
         "time": "03:18",
         "genre": "Pop"
+    },
+    {
+        "songID": 2,
+        "title": "Move Like This",
+        "artist": "Bad Computer",
+        "src": "../songs/Bad Computer - Move Like This [NCS Release].mp3",
+        "time": "03:35",
+        "genre": "Pop"
     }
 ]
