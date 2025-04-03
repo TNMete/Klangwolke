@@ -37,6 +37,33 @@ function writeFile(data) {
     fs.writeFileSync("music.json", JSON.stringify(data, null, 2));
 }
 
+app.get("/playlist/:username", (req, res) => {
+    const { username } = req.params;
+    const playlist = getUserPlaylist(username);
+    res.json(playlist);
+});
+
+// Song hinzufügen
+app.post("/playlist/:username", (req, res) => {
+    const { username } = req.params;
+    const song = req.body;
+
+    let playlist = getUserPlaylist(username);
+    playlist.push(song);
+
+    saveUserPlaylist(username, playlist);
+    res.json({ message: "Song hinzugefügt", playlist });
+});
+// Song entfernen
+app.delete("/playlist/:username/:index", (req, res) => {
+    const { username, index } = req.params;
+    let playlist = getUserPlaylist(username);
+    playlist.splice(index, 1);
+    saveUserPlaylist(username, playlist);
+
+    res.json({ message: "Song entfernt", playlist });
+});
+
 app.get("/songsglobal", (req, res) => {
     try {
         const songs = readFile(); // Korrektur: Die Daten aus der Datei lesen
