@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const fs = require("fs");
+const path = require("path");
 
 const app = express();
 app.use(express.json()); // Zum Lesen von Body-Requests
@@ -58,7 +59,14 @@ app.post("/register", (req, res) => {
             return res.status(400).json({ message: "Benutzername und Passwort erforderlich!" });
         }
 
-        const data = JSON.parse(fs.readFileSync("users.json", "utf8"));
+        const usersFile = "users.json";
+
+        // Prüfen, ob users.json existiert, falls nicht, erstellen
+        if (!fs.existsSync(usersFile)) {
+            fs.writeFileSync(usersFile, JSON.stringify([]));
+        }
+
+        const data = JSON.parse(fs.readFileSync(usersFile, "utf8"));
 
         if (data.find(user => user.username === username)) {
             return res.status(409).json({ message: "Benutzername bereits vergeben" });
@@ -66,12 +74,22 @@ app.post("/register", (req, res) => {
 
         data.push({ username, password });
 
-        fs.writeFileSync("users.json", JSON.stringify(data, null, 2));
+        fs.writeFileSync(usersFile, JSON.stringify(data, null, 2));
 
-        console.log("Aktueller Inhalt von users.json:", fs.readFileSync("users.json", "utf8"));
+        console.log("Aktueller Inhalt von users.json:", fs.readFileSync(usersFile, "utf8"));
+
+        const playlistDir = path.join(__dirname, "userPlaylists");
+        if (!fs.existsSync(playlistDir)) {
+            fs.mkdirSync(playlistDir, { recursive: true });
+        }
+
+        const userPlaylistFile = path.join(playlistDir, `${username}.json`);
+        fs.writeFileSync(userPlaylistFile, JSON.stringify([]));
+
+        console.log(`Benutzer registriert: ${username}`);
+        console.log(`Datei für ${username} erstellt: ${userPlaylistFile}`);
 
         res.status(201).json({ message: "Benutzer registriert" });
-        console.log("Benutzer registriert:", username);
     } catch (error) {
         console.error("Fehler bei der Registrierung:", error);
         res.status(500).json({ message: "Interner Serverfehler" });
@@ -79,18 +97,40 @@ app.post("/register", (req, res) => {
 });
 
 app.delete("/delete", (req, res) => {
-    const { username } = req.body;
-    const data = JSON.parse(fs.readFileSync("users.json", "utf8"));
-    const userIndex = data.findIndex(user => user.username === username);
+    try {
+        const { username } = req.body;
 
-    if (userIndex !== -1) {
+        const usersFile = path.join(__dirname, "users.json");
+        const playlistFile = path.join(__dirname, "/userPlaylists", `${username}.json`);
+
+        if (!fs.existsSync(usersFile)) {
+            return res.status(500).json({ message: "DEBUGG Benutzerdatenbank nicht gefunden" });
+        }
+
+        let data = JSON.parse(fs.readFileSync(usersFile, "utf8"));
+
+        const userIndex = data.findIndex(user => user.username === username);
+
+        if (userIndex === -1) {
+            return res.status(404).json({ message: "Benutzer nicht gefunden" });
+        }
+
         data.splice(userIndex, 1);
-        writeFile(data);
-        res.status(200).json({ message: "Benutzer gelöscht" });
-        console.log("Benutzer gelöscht:", username);
-    } else {
-        res.status(404).json({ message: "Benutzer nicht gefunden" });
-        console.log("Benutzer nicht gefunden:", username);
+        fs.writeFileSync(usersFile, JSON.stringify(data, null, 2));
+
+        console.log(`Benutzer gelöscht: ${username}`);
+
+        if (fs.existsSync(playlistFile)) {
+            fs.unlinkSync(playlistFile);
+            console.log(`Playlist-Datei gelöscht: ${playlistFile}`);
+        } else {
+            console.log(`Keine Playlist-Datei für ${username} gefunden.`);
+        }
+
+        res.status(200).json({ message: "Benutzer und Playlist-Datei gelöscht" });
+    } catch (error) {
+        console.error("Fehler beim Löschen des Benutzers:", error);
+        res.status(500).json({ message: "Interner Serverfehler" });
     }
 });
 

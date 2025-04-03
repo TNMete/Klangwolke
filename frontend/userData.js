@@ -11,7 +11,7 @@ function showForm(action) {
         const password = document.getElementById("input-password").value;
 
         if (!username || !password) {
-            alert("Bitte fülle alle Felder aus!");
+            console.log("Bitte fülle alle Felder aus!");
             return;
         }
 
@@ -31,13 +31,13 @@ function showForm(action) {
         });
 
         const data = await response.json();
-        alert(data.message);
+        console.log(data.message);
 
         if (response.status === 200 && action === "login") {
             document.getElementById("username").textContent = username;
+            updateUI(true); 
         }
 
-        // Eingabefelder wieder entfernen
         container.innerHTML = "";
     });
 }
@@ -49,8 +49,13 @@ document.getElementById("delete").addEventListener("click", async () => {
     const username = document.getElementById("username").textContent;
 
     if (username === "Benutzername") {
-        alert("Kein Benutzer eingeloggt!");
+        console.log("Kein Benutzer eingeloggt!");
         return;
+    }
+
+    const confirmDelete = confirm(`Bist du sicher, dass du den Benutzer "${username}" löschen möchtest?`);
+    if (!confirmDelete) {
+        return; 
     }
 
     const response = await fetch("http://localhost:5050/delete", {
@@ -60,9 +65,17 @@ document.getElementById("delete").addEventListener("click", async () => {
     });
 
     const data = await response.json();
-    alert(data.message);
+    console.log(data.message);
 
     if (response.status === 200) {
         document.getElementById("username").textContent = "Benutzername";
+        updateUI(false); 
     }
 });
+
+
+function updateUI(isLoggedIn) {
+    document.getElementById("register").style.display = isLoggedIn ? "none" : "block";
+    document.getElementById("login").style.display = isLoggedIn ? "none" : "block";
+    document.getElementById("delete").style.display = isLoggedIn ? "block" : "none";
+}
