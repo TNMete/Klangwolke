@@ -41,16 +41,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 
-    // Daten von den APIs abrufen und anzeigen
-    async function initializePlaylists() {
-        const userPlaylist = await fetchPlaylistData('URL_DEINER_USER_PLAYLIST_API', playlistUserTable);
-        displayPlaylist(userPlaylist, playlistUserTable);
+   // Initialisierung der Playlists
+   async function initializePlaylists() {
+    // const userPlaylist = await fetchData('URL_DEINER_USER_PLAYLIST_API');
+    // displayPlaylist(userPlaylist, playlistUserTable);
 
+    const globalPlaylist = await fetchPlaylistData('http://localhost:5050/songsglobal');
+    displayPlaylist(globalPlaylist, playlistGlobalTable);
+}
 
-        const globalPlaylist = await fetchPlaylistData('http:localhost:5500/songsglobal', playlistGlobalTable);
-        displayPlaylist(globalPlaylist, playlistGlobalTable);
-    }
-
-
-    initializePlaylists();
+initializePlaylists();
 });
