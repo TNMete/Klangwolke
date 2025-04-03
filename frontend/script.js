@@ -20,7 +20,33 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    async function fetchUserPlaylist(username) {
+        try {
+            const response = await fetch(`http://localhost:5050/playlist/${username}`);
+        } catch (error) {
+            console.error(error);
+            return [];
+        }
+    }
 
+    async function addToUserPlaylist(username, song) {
+        try {
+            const response = await fetch(`http://localhost:5050/playlist/${username}`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(song)
+            });
+            alert("Song wurde zur Playlist hinzugefügt!");
+            updateUserPlaylist(username);
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    async function updateUserPlaylist(username) {
+        const playlist = await fetchUserPlaylist(username);
+        displayPlaylist(playlist, playlistUserTable);
+    }
     // Funktion zum Anzeigen der Playlist in der Tabelle
     function displayPlaylist(playlist, table) {
         table.innerHTML = ''; // Tabelle leeren, bevor neue Daten angezeigt werden
@@ -41,14 +67,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 
-   // Initialisierung der Playlists
-   async function initializePlaylists() {
-    // const userPlaylist = await fetchData('URL_DEINER_USER_PLAYLIST_API');
-    // displayPlaylist(userPlaylist, playlistUserTable);
+    // Initialisierung der Playlists
+    async function initializePlaylists() {
+        // const userPlaylist = await fetchData('URL_DEINER_USER_PLAYLIST_API');
+        // displayPlaylist(userPlaylist, playlistUserTable);
 
-    const globalPlaylist = await fetchPlaylistData('http://localhost:5050/songsglobal');
-    displayPlaylist(globalPlaylist, playlistGlobalTable);
-}
+        const globalPlaylist = await fetchPlaylistData('http://localhost:5050/songsglobal');
+        displayPlaylist(globalPlaylist, playlistGlobalTable);
+    }
 
-initializePlaylists();
+    initializePlaylists();
 });
