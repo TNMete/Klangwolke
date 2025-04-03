@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // Funktion zum Anzeigen der Playlist in der Tabelle
-    function displayPlaylist(playlist, table) {
+     function displayPlaylist(playlist, table) {
         table.innerHTML = ''; // Tabelle leeren, bevor neue Daten angezeigt werden
         playlist.forEach(song => {
             const row = document.createElement('tr');

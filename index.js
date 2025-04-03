@@ -23,7 +23,7 @@ function writeFile(data) {
     fs.writeFileSync("music.json", JSON.stringify(data, null, 2));
 }
 
-// GET
+
 app.get("/songsglobal", (req, res) => {
     try {
         const songs = readFile(); // Korrektur: Die Daten aus der Datei lesen
@@ -34,14 +34,36 @@ app.get("/songsglobal", (req, res) => {
     }
 });
 
-// POST
-app.post("/post", (req, res) => {
+// User Playlist Modul
 
-})
+app.get("/songsUser", (req, res) => {
+    try {
+        const username = req.query.username;
 
-// DELETE
+        if (!username) {
+            return res.status(400).json({ message: "Benutzername nicht angegeben" });
+        }
 
-// USER Login Modul
+        const songs = readUserPlaylist(username);
+        res.json(songs);
+    } catch (error) {
+        console.error("Fehler beim Abrufen der Playlist:", error);
+        res.status(500).json({ message: "Interner Serverfehler" });
+    }
+});
+
+function readUserPlaylist(username) {
+    const playlistPath = path.join(__dirname, "userPlaylists", `${username}.json`);
+
+    if (!fs.existsSync(playlistPath)) {
+        return [];
+    }
+
+    const data = fs.readFileSync(playlistPath, "utf-8");
+    return JSON.parse(data);
+}
+
+// USER Login / Register / Löschen Modul
 
 app.post("/login", (req, res) => {
     const { username, password } = req.body;
