@@ -7,7 +7,7 @@ const app = express();
 app.use(express.json()); // Zum Lesen von Body-Requests
 
 app.use(cors({ // API-Sharing freigeben für Port 5050
-    origin: ["http://127.0.0.1:5500", "http:localhost:5500"],
+    origin: ["http://127.0.0.1:5500", "http:localhost:5500", "http://127.0.0.1:5050", "http:localhost:5050"],
     methods: ["GET", "POST", "DELETE"],
     allowedHeaders: ["Content-Type"],
 }));
@@ -25,9 +25,14 @@ function writeFile(data) {
 
 // GET
 app.get("/songsglobal", (req, res) => {
-    readFile()
-    res.json(songsglobal);
-})
+    try {
+        const songs = readFile(); // Korrektur: Die Daten aus der Datei lesen
+        res.json(songs); // Korrektur: Die gelesenen Daten zurückgeben
+    } catch (error) {
+        console.error("Fehler beim Lesen der music.json:", error);
+        res.status(500).json({ message: "Interner Serverfehler" });
+    }
+});
 
 // POST
 app.post("/post", (req, res) => {
