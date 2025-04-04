@@ -4,14 +4,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const audioPlayer = document.querySelector('#audioPlayer');
     const trackInfoDiv = document.querySelector('.track-info');
 
-    async function fetchPlaylistData(url, table) {
+    async function fetchPlaylistData(url) {
         try {
             const response = await fetch(url);
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
-            const data = await response.json();
-            return data;
+            return await response.json();
         } catch (error) {
             console.error('Fehler beim Abrufen der Daten:', error);
             alert('Fehler beim Abrufen der Playlist-Daten.');
@@ -22,6 +21,10 @@ document.addEventListener('DOMContentLoaded', () => {
     async function fetchUserPlaylist(username) {
         try {
             const response = await fetch(`http://localhost:5050/playlist/${username}`);
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return await response.json();
         } catch (error) {
             console.error(error);
             return [];
@@ -33,12 +36,19 @@ document.addEventListener('DOMContentLoaded', () => {
             const response = await fetch(`http://localhost:5050/playlist/${username}`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(song)
+                body: JSON.stringify(song),
             });
-            alert("Song wurde zur Playlist hinzugefügt!");
-            updateUserPlaylist(username);
+            if (response.ok) {
+                alert('Song wurde zur Playlist hinzugefügt!');
+                updateUserPlaylist(username);
+            } else {
+                const errorData = await response.json();
+                console.error('Fehler beim Hinzufügen des Songs:', errorData);
+                alert(`Fehler beim Hinzufügen des Songs: ${errorData.message}`);
+            }
         } catch (error) {
-            console.error(error);
+            console.error('Fehler beim Senden der Anfrage:', error);
+            alert('Es gab ein Problem beim Hinzufügen des Songs.');
         }
     }
 
@@ -46,10 +56,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const playlist = await fetchUserPlaylist(username);
         displayPlaylist(playlist, playlistUserTable);
     }
-    // Funktion zum Anzeigen der Playlist in der Tabelle
-     function displayPlaylist(playlist, table) {
-        table.innerHTML = ''; // Tabelle leeren, bevor neue Daten angezeigt werden
-        playlist.forEach(song => {
+
+    function displayPlaylist(playlist, table) {
+        table.innerHTML = '';
+        playlist.forEach((song) => {
             const row = document.createElement('tr');
             row.innerHTML = `
                 <td>${song.title}</td>
@@ -57,6 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <td>${song.genre}</td>
                 <td>${song.time}</td>
             `;
+            row.dataset.src = song.src;
 
             if (table === playlistGlobalTable) {
                 const addButtonCell = document.createElement('td');
@@ -70,22 +81,42 @@ document.addEventListener('DOMContentLoaded', () => {
             row.addEventListener('click', () => {
                 audioPlayer.src = song.src;
                 audioPlayer.play();
-                updateTrackInfo(song); // Track-Info aktualisieren
+                updateTrackInfo(song);
             });
             table.appendChild(row);
         });
     }
 
-    // Track-Info-Funktion
+    playlistGlobalTable.addEventListener('click', async (event) => {
+        if (event.target.classList.contains('add-to-playlist-button')) {
+            event.preventDefault();
+
+            const row = event.target.closest('tr');
+            const song = {
+                title: row.cells[0].textContent,
+                artist: row.cells[1].textContent,
+                genre: row.cells[2].textContent,
+                time: row.cells[3].textContent,
+                src: row.dataset.src,
+            };
+            const username = document.getElementById('username').textContent.trim();
+            if (username && username !== 'Benutzername') {
+                await addToUserPlaylist(username, song);
+            } else {
+                alert('Bitte melde dich zuerst an.');
+            }
+        }
+    });
+
     function updateTrackInfo(song) {
         trackInfoDiv.innerHTML = `
-            <td><strong>Titel:</strong> ${song.title}</td><br>
-            <td><strong>Künstler:</strong> ${song.artist}</td>
+            <p><strong>Titel:</strong> ${song.title}</p>
+            <p><strong>Künstler:</strong> ${song.artist}</p>
         `;
     }
 
     async function initializePlaylists() {
-        const globalPlaylist = await fetchPlaylistData('http://localhost:5050/songsglobal', playlistGlobalTable);
+        const globalPlaylist = await fetchPlaylistData('http://localhost:5050/songsglobal');
         displayPlaylist(globalPlaylist, playlistGlobalTable);
     }
 
