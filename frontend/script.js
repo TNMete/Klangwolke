@@ -4,6 +4,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const audioPlayer = document.querySelector('#audioPlayer');
     const trackInfoDiv = document.querySelector('.track-info');
 
+    let currentTrackIndex = 0;
+    let currentPlaylist = []; // Aktuelle Playlist speichern
+
     async function fetchPlaylistData(url) {
         try {
             const response = await fetch(url);
@@ -13,7 +16,6 @@ document.addEventListener('DOMContentLoaded', () => {
             return await response.json();
         } catch (error) {
             console.error('Fehler beim Abrufen der Daten:', error);
-            alert('Fehler beim Abrufen der Playlist-Daten.');
             return [];
         }
     }
@@ -40,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
             if (response.ok) {
                 alert('Song wurde zur Playlist hinzugefügt!');
-                updateUserPlaylist(username);
+                await updateUserPlaylist(username); // Stelle sicher, dass die Playlist aktualisiert ist
             } else {
                 const errorData = await response.json();
                 console.error('Fehler beim Hinzufügen des Songs:', errorData);
@@ -57,9 +59,20 @@ document.addEventListener('DOMContentLoaded', () => {
         displayPlaylist(playlist, playlistUserTable);
     }
 
+    function playTrack(playlist, index) {
+        if (index >= 0 && index < playlist.length) {
+            const song = playlist[index];
+            audioPlayer.src = song.src;
+            audioPlayer.play();
+            updateTrackInfo(song);
+            currentTrackIndex = index;
+            currentPlaylist = playlist; // Aktuelle Playlist speichern
+        }
+    }
+
     function displayPlaylist(playlist, table) {
         table.innerHTML = '';
-        playlist.forEach((song) => {
+        playlist.forEach((song, index) => {
             const row = document.createElement('tr');
             row.innerHTML = `
                 <td>${song.title}</td>
@@ -79,9 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             row.addEventListener('click', () => {
-                audioPlayer.src = song.src;
-                audioPlayer.play();
-                updateTrackInfo(song);
+                playTrack(playlist, index);
             });
             table.appendChild(row);
         });
@@ -119,6 +130,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const globalPlaylist = await fetchPlaylistData('http://localhost:5050/songsglobal');
         displayPlaylist(globalPlaylist, playlistGlobalTable);
     }
+
+    audioPlayer.addEventListener('ended', () => {
+        let nextTrackIndex = currentTrackIndex + 1;
+        if (nextTrackIndex >= currentPlaylist.length) {
+            nextTrackIndex = 0;
+        }
+        playTrack(currentPlaylist, nextTrackIndex);
+    });
 
     initializePlaylists();
 });

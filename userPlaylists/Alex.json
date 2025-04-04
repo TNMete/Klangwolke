@@ -1,1 +1,72 @@
-[]
+[
+  {
+    "title": "Heroes Tonight (feat. Johnning)",
+    "artist": "Janji - Heroes Tonight (fea...",
+    "genre": "Pop",
+    "time": "03:29",
+    "src": "../songs/Janji, Johnning - Heroes Tonight (feat. Johnning) [NCS Release].mp3"
+  },
+  {
+    "title": "DANÇA DO VERÃO",
+    "artist": "Scythermane, SH3RWIN, NXGHTI",
+    "genre": "Pop",
+    "time": "01:13",
+    "src": "../songs/Scythermane, SH3RWIN, NXGHTI - DANÇA DO VERÃO [NCS Release].mp3"
+  },
+  {
+    "title": "Why We Lose (feat. Coleman Trapp)",
+    "artist": "Cartoon - Why We Lose (f...",
+    "genre": "Pop",
+    "time": "03:33",
+    "src": "../songs/Cartoon, Coleman Trapp, Jéja - Why We Lose (feat. Coleman Trapp) [NCS Release].mp3"
+  },
+  {
+    "title": "Royalty",
+    "artist": "Egzod & Maestro Chives",
+    "genre": "Pop",
+    "time": "03:43",
+    "src": "../songs/Maestro Chives, Egzod, Neoni - Royalty [NCS Release].mp3"
+  },
+  {
+    "title": "DANÇA DO VERÃO",
+    "artist": "Scythermane, SH3RWIN, NXGHTI",
+    "genre": "Pop",
+    "time": "01:13",
+    "src": "../songs/Scythermane, SH3RWIN, NXGHT! - DANÇA DO VERÃO [NCS Release].mp3"
+  },
+  {
+    "title": "Move Like This",
+    "artist": "Bad Computer",
+    "genre": "Pop",
+    "time": "03:35",
+    "src": "../songs/Bad Computer - Move Like This [NCS Release].mp3"
+  },
+  {
+    "title": "No Rival",
+    "artist": "Egzod & Maestro Chives & Alaina Cross",
+    "genre": "Pop",
+    "time": "03:18",
+    "src": "../songs/Alaina Cross, Maestro Chives, Egzod - No Rival [NCS Release].mp3"
+  },
+  {
+    "title": "Phoenix",
+    "artist": "Halvorsen, Netrum",
+    "genre": "Pop",
+    "time": "03:50",
+    "src": "../songs/Halvorsen, Netrum - Phoenix [NCS Release].mp3"
+  },
+  {
+    "title": "SVision pt. II",
+    "artist": "She Is Jules, Lost Sky",
+    "genre": "Pop",
+    "time": "03:28",
+    "src": "../songs/She Is Jules, Lost Sky - Vision pt. II [NCS Release].mp3"
+  },
+  {
+    "title": "Feel Good",
+    "artist": "Syn Cole",
+    "genre": "Pop",
+    "time": "03:01",
+    "src": "../songs/Syn Cole - Feel Good [NCS Release].mp3"
+  }
+]
