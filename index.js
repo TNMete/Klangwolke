@@ -13,17 +13,16 @@ app.use(cors({ // API-Sharing freigeben für Port 5050 & 5500
 }));
 
 function getUserPlaylist(username) {
-    const filePath = path.join(__dirname, "../userPlaylists", `${username}.json`);
-
+    const filePath = path.join(__dirname, "/userPlaylists", `${username}.json`);
     if (!fs.existsSync(filePath)) {
         fs.writeFileSync(filePath, JSON.stringify([]));
-
-        return JSON.parse(fs.readFileSync(filePath, "utf8"));
     }
+    const data = fs.readFileSync(filePath, "utf8");
+    return JSON.parse(data);
 }
 
 function saveUserPlaylist(username, playlist) {
-    const filePath = path.join(__dirname, "../userPlaylists", `${username}.json`);
+    const filePath = path.join(__dirname, "/userPlaylists", `${username}.json`);
     fs.writeFileSync(filePath, JSON.stringify(playlist, null, 2));
 }
 
@@ -54,11 +53,18 @@ app.post("/playlist/:username", (req, res) => {
     saveUserPlaylist(username, playlist);
     res.json({ message: "Song hinzugefügt", playlist });
 });
+
 // Song entfernen
 app.delete("/playlist/:username/:index", (req, res) => {
     const { username, index } = req.params;
     let playlist = getUserPlaylist(username);
-    playlist.splice(index, 1);
+
+    const indexToRemove = parseInt(index);
+    if (isNaN(indexToRemove) || indexToRemove < 0 || indexToRemove >= playlist.length) {
+        return res.status(400).json({ message: "Ungültiger Index zum Entfernen" });
+    }
+
+    playlist.splice(indexToRemove, 1);
     saveUserPlaylist(username, playlist);
 
     res.json({ message: "Song entfernt", playlist });
@@ -93,7 +99,7 @@ app.get("/songsUser", (req, res) => {
 });
 
 function readUserPlaylist(username) {
-    const playlistPath = path.join(__dirname, "userPlaylists", `${username}.json`);
+    const playlistPath = path.join(__dirname, "/userPlaylists", `${username}.json`);
 
     if (!fs.existsSync(playlistPath)) {
         return [];
@@ -144,7 +150,7 @@ app.post("/register", (req, res) => {
 
         console.log("Aktueller Inhalt von users.json:", fs.readFileSync(usersFile, "utf8"));
 
-        const playlistDir = path.join(__dirname, "../userPlaylists");
+        const playlistDir = path.join(__dirname, "/userPlaylists");
         if (!fs.existsSync(playlistDir)) {
             fs.mkdirSync(playlistDir, { recursive: true });
         }
@@ -167,23 +173,18 @@ app.delete("/delete", (req, res) => {
         const { username } = req.body;
 
         const usersFile = path.join(__dirname, "users.json");
-        const playlistFile = path.join(__dirname, "../userPlaylists", `${username}.json`);
+        const playlistFile = path.join(__dirname, "/userPlaylists", `${username}.json`);
 
         if (!fs.existsSync(usersFile)) {
             return res.status(500).json({ message: "Benutzerdatenbank nicht gefunden" });
         }
-
         let data = JSON.parse(fs.readFileSync(usersFile, "utf8"));
-
         const userIndex = data.findIndex(user => user.username === username);
-
         if (userIndex === -1) {
             return res.status(404).json({ message: "Benutzer nicht gefunden" });
         }
-
         data.splice(userIndex, 1);
         fs.writeFileSync(usersFile, JSON.stringify(data, null, 2));
-
         console.log(`Benutzer gelöscht: ${username}`);
 
         if (fs.existsSync(playlistFile)) {
@@ -200,5 +201,4 @@ app.delete("/delete", (req, res) => {
     }
 });
 
-// -----
 app.listen(5050, () => console.log("Server läuft auf Port 5050"));

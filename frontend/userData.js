@@ -14,7 +14,7 @@ async function fetchUserPlaylist(username) {
 
 function showForm(action) {
     const container = document.getElementById("form-container");
-    
+
     document.getElementById("login").style.display = "none";
     document.getElementById("register").style.display = "none";
 
@@ -53,8 +53,8 @@ function showForm(action) {
 
         if (response.status === 200 && action === "login") {
             document.getElementById("username").textContent = username;
-            updateUI(true, username); 
-            
+            updateUI(true, username);
+
             container.innerHTML = "";
 
 
@@ -65,17 +65,48 @@ function showForm(action) {
                 } else {
                     console.log('[KAYT] Keine Playlist gefunden.');
                 }
-            });            
+            });
 
         } else {
             console.log('Login fehlgeschlagen oder andere Aktion erforderlich.');
-         
+
         }
 
-        container.innerHTML = ""; 
+        container.innerHTML = "";
     });
 }
+async function removeFromUserPlaylist(username, index) {
+    try {
+        const response = await fetch(`http://localhost:5050/playlist/${username}/${index}`, {
+            method: 'DELETE',
+        });
+        if (response.ok) {
+            alert("Song wurde aus der Playlist entfernt!");
+            updateUserPlaylist(username);
+        } else {
+            const errorData = await response.json();
+            console.error("Fehler beim Entfernen des Songs:", errorData);
+            alert(`Fehler beim Entfernen des Songs: ${errorData.message}`);
+        }
+    } catch (error) {
+        console.error("Fehler beim Senden der Anfrage:", error);
+        alert("Es gab ein Problem beim Entfernen des Songs.");
+    }
+}
 
+// Event Listener für die "x" Buttons in der Benutzerplaylist
+document.querySelector('#playlistUserTable tbody').addEventListener('click', async (event) => {
+    if (event.target.classList.contains('delete-playlist-button')) {
+        const row = event.target.closest('tr');
+        const index = row.rowIndex - 1; // Index in der Tabelle (ohne Header)
+        const username = document.getElementById('username').textContent;
+        if (username && username !== 'Benutzername') {
+            await removeFromUserPlaylist(username, index);
+        } else {
+            alert('Bitte melde dich zuerst an.');
+        }
+    }
+});
 function displayPlaylist(playlist, table) {
     table.innerHTML = ''; // Tabelle leeren, bevor neue Daten angezeigt werden
     playlist.forEach(song => {
@@ -86,14 +117,14 @@ function displayPlaylist(playlist, table) {
             <td>${song.genre}</td>
             <td>${song.time}</td>
         `;
-        
-            const addButtonCell = document.createElement('td');
-            const addButton = document.createElement('button');
-            addButton.textContent = 'x';
-            addButton.classList.add('delete-playlist-button');
-            addButtonCell.appendChild(addButton);
-            row.appendChild(addButtonCell);
-        
+
+        const addButtonCell = document.createElement('td');
+        const addButton = document.createElement('button');
+        addButton.textContent = 'x';
+        addButton.classList.add('delete-playlist-button');
+        addButtonCell.appendChild(addButton);
+        row.appendChild(addButtonCell);
+
         row.addEventListener('click', () => {
             audioPlayer.src = song.src;
             audioPlayer.play();
@@ -135,12 +166,12 @@ document.getElementById("delete").addEventListener("click", async () => {
 
 function updateUI(isLoggedIn, username = null) {
     console.log('[KAYT] UI wird aktualisiert. Eingeloggt:', isLoggedIn, 'Benutzer:', username);
-    
+
     document.getElementById("register").style.display = isLoggedIn ? "none" : "block";
     document.getElementById("login").style.display = isLoggedIn ? "none" : "block";
     document.getElementById("delete").style.display = isLoggedIn ? "block" : "none";
     document.getElementById("username").style.display = isLoggedIn ? "block" : "none";
-    
+
     if (isLoggedIn) {
         document.getElementById("username").textContent = username;
     }
