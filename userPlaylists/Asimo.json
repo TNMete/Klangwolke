@@ -1,13 +1,5 @@
 [
   {
-    "songID": 2,
-    "title": "Move Like This",
-    "artist": "Bad Computer",
-    "src": "../songs/Bad Computer - Move Like This [NCS Release].mp3",
-    "time": "03:35",
-    "genre": "Pop"
-  },
-  {
     "title": "No Rival",
     "artist": "Egzod & Maestro Chives & Alaina Cross",
     "genre": "Pop",
@@ -27,12 +19,5 @@
     "genre": "Pop",
     "time": "04:33",
     "src": "../songs/DEAF KEV - Invincible [NCS Release].mp3"
-  },
-  {
-    "title": "Crazy",
-    "artist": "BEAUZ, JVNA",
-    "genre": "Pop",
-    "time": "03:27",
-    "src": "../songs/BEAUZ, JVNA - Crazy [NCS Release].mp3"
   }
 ]
