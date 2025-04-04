@@ -85,6 +85,12 @@ function displayPlaylist(playlist, table) {
             <td>${song.genre}</td>
             <td>${song.time}</td>
         `;
+            const addButtonCell = document.createElement('td');
+            const addButton = document.createElement('button');
+            addButton.textContent = 'x';
+            addButton.classList.add('delete-playlist-button');
+            addButtonCell.appendChild(addButton);
+            row.appendChild(addButtonCell);
         row.addEventListener('click', () => {
             audioPlayer.src = song.src;
             audioPlayer.play();

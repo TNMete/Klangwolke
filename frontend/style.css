@@ -22,6 +22,9 @@ body {
     justify-content: space-between;
     align-items: center;
     grid-area: header;
+    position: fixed;
+    top:0px;
+    width: 100vw;
 }
 
 #footer {
@@ -32,6 +35,9 @@ body {
     grid-template-columns: 1fr 1fr 1fr;
     align-items: center;
     grid-area: footer;
+    position: fixed;
+    bottom:0px;
+    width: 100vw;
 }
 
 .logo img {
@@ -55,7 +61,7 @@ aside {
     background-color: rgba(223, 206, 206, 0.5);
     border-radius: 10px;
     margin-right: 20px;
-    height: 550px;
+    height: 100%;
     overflow-y: auto;
 }
 
@@ -101,6 +107,21 @@ a, button:hover, table tr:hover {
 }
 
 .add-to-playlist-button:hover {
+    color: red;
+    border-color: red;
+    background-color: rgba(138, 129, 129, 0.5);
+}
+
+/* Button-Styling für User Tabelle */
+.delete-playlist-button {
+    background-color: rgba(223, 206, 206, 0.5);
+    border: 1px solid #444040;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.delete-playlist-button:hover {
     color: red;
     border-color: red;
     background-color: rgba(138, 129, 129, 0.5);

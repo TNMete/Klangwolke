@@ -14,5 +14,21 @@
         "src": "../songs/Bad Computer - Move Like This [NCS Release].mp3",
         "time": "03:35",
         "genre": "Pop"
+    },
+    {
+        "songID": 3,
+        "title": "Devil",
+        "artist": "Barren Gates",
+        "src": "../songs/Barren Gates - Devil [NCS Release].mp3",
+        "time": "02:56",
+        "genre": "Pop"
+    },
+    {
+        "songID": 3,
+        "title": "Devil",
+        "artist": "Barren Gates",
+        "src": "../songs/Barren Gates - Devil [NCS Release].mp3",
+        "time": "02:56",
+        "genre": "Pop"
     }
 ]
