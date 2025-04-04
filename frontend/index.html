@@ -7,8 +7,9 @@
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <title>Klangwolke</title>
 </head>
-<body>
+<body class="light-mode">
     <header class="grid-item" id="header">
+        <button id="toggleMode" onclick="toggleMode()">Darkmode</button>
         <div class="logo">
             <img src="logo_hell.png" alt="Logo">
         </div>
@@ -56,9 +57,10 @@
     <footer class="grid-item" id="footer">
         <div class="track-info"></div>
         <audio id="audioPlayer" controls></audio>
-        <!-- <button id="add-to-playlist-button">Titel zur eigenen Playlist hinzufügen</button> -->
+        <button id="new-song">Füge neue Songs hinzu ➕</button>
     </footer>
     <script src="script.js"></script>
     <script src="userData.js"></script>
+    <script src="toggleLightDark.js"></script>
 </body>
 </html>
